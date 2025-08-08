@@ -16,12 +16,15 @@ You can select the winning score, add points for each player, and reset the game
    ```bash
    git clone https://github.com/<your-username>/scorekeeper.git
    cd scorekeeper
-Double-click index.html to open in your default browser
+Double-click index.html to open in your default browser.
 
 ## File Structure
-#scorekeeper/
-#│
-#├── index.html   # Main HTML file
-#├── app.js       # Game logic
-#├── README.md    # Documentation
-3└── (Bulma CSS is loaded via CDN)
+```
+scorekeeper/
+│
+├── index.html   # Main HTML file
+├── app.js       # Game logic
+├── README.md    # Documentation
+└── (Bulma CSS is loaded via CDN)
+```
+
