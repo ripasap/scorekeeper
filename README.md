@@ -14,7 +14,7 @@ You can select the winning score, add points for each player, and reset the game
 ## How to Run Locally
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/<your-username>/scorekeeper.git
+   git clone https://github.com/ripasap/scorekeeper.git
    cd scorekeeper
 Double-click index.html to open in your default browser.
 
