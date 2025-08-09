@@ -1,6 +1,6 @@
 # Table Tennis Score Keeper
 
-A simple **score tracking web app** clicking game for two players, built with HTML, CSS (Bulma), and JavaScript.  
+A simple **score tracking web app** for two players, built with HTML, CSS (Bulma), and JavaScript.  
 You can select the winning score, add points for each player, and reset the game at any time.
 
 ## Features
