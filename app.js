@@ -1,12 +1,12 @@
-
+const statusEl = document.querySelector('#status');
 const p1 = {
-    score:0,
+    score: 0,
     button: document.querySelector('#p1button'),
     display: document.querySelector('#p1')
 }
 
 const p2 = {
-    score:0,
+    score: 0,
     button: document.querySelector('#p2button'),
     display: document.querySelector('#p2')
 }
@@ -15,15 +15,21 @@ let winningScore = 3;
 let isGameOver = false;
 const resetButton = document.querySelector('#reset');
 const winningScoreSelector = document.querySelector('#playto');
-
+let og_winningscore = 3;
 winningScoreSelector.addEventListener('change', function () {
     winningScore = parseInt(this.value);
+    og_winningscore = winningScore;
     reset();
 })
 
-function updateScore(player , opponent){
+let confettiactive = true; 
+function updateScore(player, opponent) {
     if (!isGameOver) {
         player.score++;
+        if(player.score == opponent.score & player.score == (winningScore - 1)){
+            winningScore += 1;
+            statusEl.textContent = 'Deuce!';
+        }
         if (player.score == winningScore) {
             // alert("P1 WINNER");
             isGameOver = true;
@@ -31,6 +37,9 @@ function updateScore(player , opponent){
             opponent.display.classList.add('has-text-danger');
             player.button.disabled = true;
             opponent.button.disabled = true;
+            confettiactive = true;
+            statusEl.textContent = '';
+            con();
         }
     }
     player.display.textContent = player.score;
@@ -61,7 +70,7 @@ p1.button.addEventListener('click', function () {
     // }
     // p1display.textContent = p1Score;
     updateScore(p1, p2);
-    
+
 })
 p2.button.addEventListener('click', function () {
     updateScore(p2, p1);
@@ -94,8 +103,42 @@ function reset() {
     p2.display.classList.remove('has-text-danger', 'has-text-success');
     p1.button.disabled = false;
     p2.button.disabled = false;
+    confettiactive = false;
+    winningScore = og_winningscore;
+    statusEl.textContent = '';
     // for(let p of [p1, p2]){
     //     p.score = 0;
     //     p.display.textContent = p.score;
     // }
+
+}
+
+function con() {
+    const end = Date.now() + (2) * 1000;
+   // go Buckeyes!
+    const colors = ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"];
+
+    (function frame() {
+        if(!confettiactive)return;
+
+        confetti({
+            particleCount: 2,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: colors,
+        });
+
+        confetti({
+            particleCount: 2,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: colors,
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
 }
